@@ -1,0 +1,29 @@
+  <!DOCTYPE html>
+    <html>
+    <head>
+    	<title>Angular Addition</title>
+    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    </head>
+    <body>
+    	<div ng-app="">
+    		<p>Introduceti a: <input type="number"  ng-model="a"></p>
+    		<p>Introduceti b: <input type="number" ng-model="b"></p>
+    		<p>Suma {{ (a) + (b) }}</p>
+    		<p>Diferenta {{ (a) - (b) }}</p>
+    		<p>Produsul {{ (a) * (b) }}</p>
+            <p>Catul {{ (a) / (b) }}</p>
+            
+            <p>Produsul lui a * 1 = {{ (a) * 1 }}</p>
+            <p>Produsul lui a * 2 = {{ (a) * 2 }}</p>
+            <p>Produsul lui a * 3 = {{ (a) * 3 }}</p>
+            <p>Produsul lui a * 4 = {{ (a) * 4 }}</p>
+            <p>Produsul lui a * 5 = {{ (a) * 5 }}</p>
+            <p>Produsul lui a * 6 = {{ (a) * 6 }}</p>
+            <p>Produsul lui a * 7 = {{ (a) * 7 }}</p>
+            <p>Produsul lui a * 8 = {{ (a) * 8 }}</p>
+            <p>Produsul lui a * 9 = {{ (a) * 9 }}</p>
+            
+
+    	</div>
+    </body>
+    </html>
