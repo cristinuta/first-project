@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+</head>
+<body ng-controller="studentController"> 
+    <h1>Formular de Angajare</h1>
+    <form ng-submit="submitStudnetForm()" >
+            <label for="firstName" >Prenume: </label><br />
+            <input type="text" id="firstName" ng-model="student.firstName" /> <br />
+
+            <label for="lastName">Nume:</label><br />
+                <input type="text" id="lastName" ng-model="student.lastName" /> <br />
+            <label for="dob" >Data nasterii</label><br />
+                <input type="date" id="dob" ng-model="student.DoB" /> <br /><br />
+
+            <label for="gender" >Gender</label> <br />
+                <select id="gender" ng-model="student.gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select><br /> <br />
+                <span>Facultatea:</span><br />
+                    <label><input value="Chimie" type="radio" name="training" ng-model="student.trainingType" />Chimie</label><br />
+                    <label><input value="Informatica" type="radio" name="training" ng-model="student.trainingType" />Informatica</label><br />
+                    <label><input value="Matematica" type="radio" name="training" ng-model="student.trainingType" />Matematica</label><br />
+                    <label><input value="Biologia" type="radio" name="training" ng-model="student.trainingType" />Biologia</label><br />
+                    <label><input value="Fizica" type="radio" name="training" ng-model="student.trainingType" />Fizica</label> <br /><br />
+                <span>Obiectul predarii</span><br />
+                    <label><input type="checkbox" ng-model="student.maths" />Chimia organica</label> <br />
+                    <label><input type="checkbox" ng-model="student.physics" />Matematica economica</label> <br />
+                    <label><input type="checkbox" ng-model="student.physics" />Matematica economica</label> <br />
+                    <label><input type="checkbox" ng-model="student.physics" />Grafica pe calculator</label> <br />
+                    <label><input type="checkbox" ng-model="student.physics" />Framework-uri pentru aplicatii web</label> <br />
+                    <label><input type="checkbox"  ng-model="student.chemistry" />Fizica inginereasca</label><br /><br />
+       
+        <input type="submit" value="Confirma" /> 
+        <input type="reset" ng-click="resetForm()" value="Anuleaza" /> <br />
+		@* Note: This form will not be submitted in demo. *@
+    </form>
+        
+</body>
+</html>
