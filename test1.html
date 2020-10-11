@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+div.background {
+  background: url(https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-medical-dental-science-research-science-background-image_199083.jpg) repeat;
+   background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  border: 2px solid black;
+}
+
+div.transbox {
+  margin: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+}
+
+div.transbox p {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+}
+
+</style>
+<body>
+<div ng-app="myApp" ng-controller="proiect" class="background">
+<div ng-show="autentificare">
+<h1><p style="text-align: center;  font: 35px Arial, sans-serif;">Clinica "DentParc"</p></h1><br/><br/>
+<div class="transbox">
+<form>
+<h1><p style=" margin-left: 3%;">Autentificare:</p></h1><br/>
+
+ <div class="col-md-8" >
+<label>Login:</label> 
+<input type="text" class="form-control" ng-init="log='Admin'" ng-change="verification()" ng-model="log" style="width: 100%; padding: 12px 20px; margin: 8px 0;box-sizing: border-box;">
+</div>
+
+<div class="col-md-6">
+<label>Password:</label> 
+<input type="password" class="form-control" ng-change="verification()" ng-model="pas" style="width: 100%; padding: 12px 20px; margin: 8px 0;box-sizing: border-box;"></div>
+<br/><br/>
+
+<button  type="submit" ng-disabled="salariudone" ng-click="trimite()"style=" margin:auto; display:block; width : 30%;" class="btn btn-default">Send</button>
+  <br/>
+  <button type="reset" ng-click="sterge()" style=" margin:auto;
+  display:block; width : 30%;" class="btn btn-default">Reset</button>
+  <br/>
+</form>
+                   
+               
+</div>
+</div>
+
+<div ng-show="servicii">
+<h1><p style="text-align: center; font: 35px Arial, sans-serif;" >Clinica "DentParc"</p></h1><br/><br/>
+<h1><p style=" margin-left: 3%;">Bine ai venit,</p></h1>
+<h3><p style=" margin-left: 3%;">Vezi serviciile noastre.</p></h3><br/><br/>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="text-align: center;
+  vertical-align: middle;">Denumire</th>
+                    <th style="text-align: center;
+  vertical-align: middle;">Pretul</th>
+    <th style="text-align: center;
+  vertical-align: middle;">Programare</th>
+                </tr>
+  
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in list.items | orderBy : 'denumire'">
+                    <td style="text-align: center;
+  vertical-align: middle;">{{x.denumire}}</td>
+  				 <td style="text-align: center;
+  vertical-align: middle;">{{x.pretul}}</td>
+<td style="text-align: center;
+  vertical-align: middle;"><input type="checkbox" ng-model="x.done" /></td>
+                </tr>
+                <tr>
+                   <td style="text-align: center;
+  vertical-align: middle;">Total:</td>
+                   <td colspan="3" style="text-align: center;
+  vertical-align: middle;">{{ sumaTotala }}</td>
+                </tr>
+            </tbody>
+        </table>
+       <div>
+        <div class="form-group ">
+                <div class="col-md-offset-2 col-md-8">
+                    <button class="btn btn-default" ng-click="total()">Total</button>
+                </div>
+            </div>
+                    <div class="form-group">
+                <div class="col-md-offset-2 col-md-8">
+                    <button style="float:none, margin-left:50px"class="btn btn-default" ng-click="deluser()">Sterge</button>
+                </div></div>
+                <br/>
+               
+                 <div class="form-group">
+                <div class="col-md-offset-2 col-md-8">
+                     <button class="btn btn-default" style=" margin:auto;
+  display:block; width : 40%;" ng-click="logoutA()">Logout</button>
+                </div></div>
+                <script>
+var app = angular.module('myApp', []);
+app.controller('proiect', function($scope) {
+    $scope.sterge = function() {
+    $scope.log = $scope.pas='';
+    };
+    
+
+     $scope.autentificare=true;
+      $scope.servicii=false;
+
+    
+    $scope.salariudone = true;
+    
+    $scope.verification=function(){
+   if($scope.log==='Admin' &&  $scope.pas==='PIV')
+    {$scope.salariudone = false;}
+    }
+    
+    $scope.trimite=function(){
+    $scope.servicii=true;
+    $scope.autentificare=false;
+    }
+    
+    var model = {
+    items: [
+        { denumire: "Ortodontie", done: false, pretul: 50 },
+        { denumire: "Paradontologie", done: false, pretul: 90 },
+        { denumire: "Implantologie",  done: false, pretul: 200 },
+        { destinatia: "Albire dentara", done: false, pretul: 65 }
+    ]
+};
+$scope.list = model;
+$scope.logoutA = function(){
+    $scope.servicii=false;
+   $scope.autentificare=true;
+    $scope.log = $scope.pas='';
+    $scope.salariudone = true; }
+    
+        $scope.sumaTotala = 0;
+    $scope.deluser=function(){
+       $scope.list.items.forEach(function(x){
+   			x.done=false;
+            $scope.sumaTotala = 0;
+    })
+    }
+    
+    $scope.total = function(){
+        $scope.sumTotala=0;
+        $scope.list.items.forEach(function(x){
+            if(x.done==true) $scope.sumaTotala += x.pretul;
+        })}
+    });
+    </script>
+</body>
+</html>
